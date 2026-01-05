@@ -3,12 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap"
-            rel="stylesheet"
-        />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <title>ludvigsandberg</title>
     </head>
     <body
@@ -17,13 +12,22 @@
         <div class="z-10 flex h-full w-full flex-row gap-1 p-7">
             <!-- left side bar -->
             <div class="flex flex-2 flex-col gap-1">
-                <div class="rounded-sm bg-white/7 p-4 backdrop-blur-sm">
-                    <div class="aspect-square w-full rounded-full bg-white/30"></div>
+                <div class="rounded-sm bg-white/7 p-6 backdrop-blur-sm">
+                    <div
+                        class="flex aspect-square w-full items-center justify-center rounded-full bg-white/20 text-xs"
+                    >
+                        Work in Progress
+                    </div>
                 </div>
-                <div class="rounded-sm bg-white/7 p-4 backdrop-blur-sm">Ludvig Sandberg</div>
-                <div class="flex-1 rounded-sm bg-white/7 p-4 backdrop-blur-sm">
-                    <p class="mb-1 text-sm">Github</p>
-                    <p class="text-sm">LinkedIn</p>
+                <div class="rounded-sm bg-white/7 p-6 backdrop-blur-sm">
+                    <p class="text-sm">Ludvig Sandberg</p>
+                </div>
+                <div class="flex-1 rounded-sm bg-white/7 p-6 backdrop-blur-sm">
+                    <a class="mb-1 text-sm" href="https://github.com/ludvigsandberg">Github</a>
+                    <br />
+                    <a class="text-sm" href="https://www.linkedin.com/in/ludvig-sandberg-a37327383"
+                        >LinkedIn</a
+                    >
                 </div>
             </div>
 
@@ -35,7 +39,7 @@
                     <h1 class="mb-2 text-3xl font-medium">
                         Reverse Engineering the Windows Desktop Compositor
                     </h1>
-                    <p class="mb-4 text-sm">2026-01-05</p>
+                    <p class="mb-6 text-xs">2026-01-05</p>
                     <p class="text-sm">
                         Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex
                         sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis
@@ -98,13 +102,23 @@
                         lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti
                         sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
                     </p>
+
+                    <!-- spacer -->
+                    <div class="h-16"></div>
                 </div>
             </div>
             <!-- right side bar -->
-            <div class="flex-2 rounded-sm bg-white/7 p-4 backdrop-blur-sm">
-                <p class="mb-1 text-sm">Reverse Engineering the Windows Desktop Compositor</p>
-                <p class="mb-1 text-sm">C99 Macro Hacks</p>
+            <div class="flex flex-2 flex-col gap-1">
+                <div class="flex-1 rounded-sm bg-white/7 p-6 backdrop-blur-sm">
+                    <p class="mb-1 text-sm">Reverse Engineering the Windows Desktop Compositor</p>
+                    <p class="mb-1 text-sm">C99 Macro Hacks</p>
+                    <p class="mb-1 text-sm">Useful C99 Compiler Flags</p>
+                </div>
+                <div class="rounded-sm bg-white/7 p-6 backdrop-blur-sm">
+                    <p class="text-sm">© 2026</p>
+                </div>
             </div>
+
             <!--
                 <div class="flex aspect-square h-full flex-col gap-1 bg-cover">
                     <div class="flex flex-1 flex-row gap-1">
