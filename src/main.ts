@@ -1,6 +1,6 @@
-import './style.css'
+import './styles/global.css'
 
 // show site after assets load
 window.addEventListener('load', () => {
-    document.documentElement.style.visibility = 'visible'
+    document.body.style.visibility = 'visible'
 })

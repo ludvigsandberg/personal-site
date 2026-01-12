@@ -1,0 +1,131 @@
+---
+import { getCollection, render } from 'astro:content'
+
+export async function getStaticPaths() {
+    const articles = await getCollection('articles')
+
+    return articles.map((article) => ({
+        params: { slug: article.id },
+        props: article,
+    }))
+}
+
+const article = Astro.props
+const { Content } = await render(article)
+
+const articles = (await getCollection('articles')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
+---
+
+<!doctype html>
+<!-- start as hidden, upon load script will set as visible -->
+<html lang="en" style="background-color: #1c1c1e;">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title>ludvigsandberg</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Unica+One&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body
+        style="visibility: hidden;"
+        class="z-1 h-screen w-screen overflow-hidden bg-[url('/bg.jpg')] bg-cover bg-center object-cover"
+    >
+        <div class="z-10 flex h-full w-full flex-row gap-0.75 p-7">
+            <!-- left side bar -->
+            <div class="flex flex-3 flex-col gap-0.75">
+                <div class="flex justify-center rounded-sm bg-white/12 p-6 backdrop-blur-sm">
+                    <p class="text-sm">ludvigsandberg</p>
+                </div>
+                <div class="flex flex-1 flex-col rounded-sm bg-white/12 backdrop-blur-sm">
+                    <div class="p-10">
+                        <div
+                            class="aspect-square w-full rounded-full bg-[url('/me.jpg')] bg-cover bg-center"
+                        >
+                        </div>
+                    </div>
+                    <div class="flex-1 px-6">
+                        <p class="text-xs text-zinc-400/90">
+                            I like reverse engineering and low level coding
+                        </p>
+                    </div>
+                    <div class="flex">
+                        <a
+                            href="https://github.com/ludvigsandberg"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex flex-1 items-center justify-evenly p-6 hover:bg-white/5"
+                        >
+                            <div class="flex translate-x-3 flex-row items-center gap-2">
+                                <img src="/github.png" class="h-2.5 w-2.5 opacity-50" />
+                                <span class="text-xs text-zinc-400/90">GitHub</span>
+                            </div>
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/ludvig-sandberg-a37327383/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex flex-1 items-center justify-evenly p-6 hover:bg-white/5"
+                        >
+                            <div class="flex -translate-x-3 flex-row items-center gap-2">
+                                <img src="/linkedin.png" class="h-2.5 w-2.5 opacity-50" />
+                                <span class="text-xs text-zinc-400/90">LinkedIn</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- main content -->
+            <div class="flex-12 rounded-sm bg-white/12 backdrop-blur-sm">
+                <div class="flex h-full w-full justify-center overflow-y-scroll px-16">
+                    <div class="h-full w-[80ch]">
+                        <div class="pt-16" id="test">
+                            <h1 class="mb-2 text-3xl font-medium">
+                                {article.data.title}
+                            </h1>
+                            <p class="mb-7 text-xs text-zinc-400/90">
+                                {article.data.date.toISOString().split('T')[0]}
+                            </p>
+                            <p class="text-sm leading-relaxed">
+                                <Content />
+                            </p>
+
+                            <!-- spacer -->
+                            <div class="h-16"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- right side bar -->
+            <div class="flex flex-3 flex-col gap-0.75">
+                <div class="flex-1 rounded-sm bg-white/12 py-4.5 text-sm backdrop-blur-sm">
+                    {
+                        articles.map((article) => (
+                            <a href={`/article/${article.id}`}>
+                                <div class="flex flex-col gap-1 px-6 py-1.5 hover:bg-white/5">
+                                    <p>{article.data.title}</p>
+                                    <p class="text-[0.625rem] text-zinc-400/90">
+                                        {article.data.date.toISOString().split('T')[0]}
+                                    </p>
+                                </div>
+                            </a>
+                        ))
+                    }
+                </div>
+                <div class="flex justify-center rounded-sm bg-white/12 p-6 backdrop-blur-sm">
+                    <p class="text-xs text-zinc-400/90">© 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
