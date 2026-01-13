@@ -3,7 +3,7 @@ title: 'Advanced C99'
 date: '2026-01-11'
 ---
 
-wip
+wip, check out my library in the meantime, https://github.com/ludvigsandberg/xlib
 <br /><br />
 
 ```c

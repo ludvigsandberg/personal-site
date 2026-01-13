@@ -3,7 +3,7 @@ title: 'Reverse Engineering the Windows Desktop Compositor'
 date: '2026-01-12'
 ---
 
-wip
+wip, researching...
 <br /><br />
 
 ```rs

@@ -24,7 +24,6 @@ const articles = (await getCollection('articles')).sort(
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <title>ludvigsandberg</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,10 +33,13 @@ const articles = (await getCollection('articles')).sort(
             rel="stylesheet"
         />
     </head>
-    <body
-        style="visibility: hidden;"
-        class="z-1 h-screen w-screen overflow-hidden bg-[url('/bg.jpg')] bg-cover bg-center object-cover"
-    >
+    <body style="visibility: hidden;" class="z-1 h-screen w-screen overflow-hidden">
+        <!-- background image -->
+        <div
+            class="absolute h-full w-full bg-[url('/bg.jpg')] bg-cover bg-center object-cover brightness-90"
+        >
+        </div>
+        <!-- content -->
         <div class="z-10 flex h-full w-full flex-row gap-0.75 p-7">
             <!-- left side bar -->
             <div class="flex flex-3 flex-col gap-0.75">
@@ -56,33 +58,37 @@ const articles = (await getCollection('articles')).sort(
                             I like reverse engineering and low level coding
                         </p>
                     </div>
-                    <div class="flex">
-                        <a
-                            href="https://github.com/ludvigsandberg"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="flex flex-1 items-center justify-evenly p-6 hover:bg-white/5"
-                        >
-                            <div class="flex translate-x-3 flex-row items-center gap-2">
+                    <!-- links -->
+                    <div class="relative flex w-full">
+                        <div class="flex h-full w-full justify-evenly py-6">
+                            <div class="flex flex-row items-center gap-2">
                                 <img src="/github.png" class="h-2.5 w-2.5 opacity-50" />
                                 <span class="text-xs text-zinc-400/90">GitHub</span>
                             </div>
-                        </a>
-                        <a
-                            href="https://www.linkedin.com/in/ludvig-sandberg-a37327383/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="flex flex-1 items-center justify-evenly p-6 hover:bg-white/5"
-                        >
-                            <div class="flex -translate-x-3 flex-row items-center gap-2">
+                            <div class="flex flex-row items-center gap-2">
                                 <img src="/linkedin.png" class="h-2.5 w-2.5 opacity-50" />
                                 <span class="text-xs text-zinc-400/90">LinkedIn</span>
                             </div>
-                        </a>
+                        </div>
+                        <div class="absolute flex h-full w-full">
+                            <a
+                                href="https://github.com/ludvigsandberg"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex-1 hover:bg-white/5"
+                            >
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/ludvig-sandberg-a37327383/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex-1 hover:bg-white/5"
+                            >
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <!-- main content -->
             <div class="flex-12 rounded-sm bg-white/12 backdrop-blur-sm">
                 <div class="flex h-full w-full justify-center overflow-y-scroll px-16">
