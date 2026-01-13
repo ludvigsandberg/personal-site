@@ -1,16 +1,15 @@
-import { getCollection } from 'astro:content';
-import rss from '@astrojs/rss';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content'
+import rss from '@astrojs/rss'
 
 export async function GET(context) {
-	const posts = await getCollection('blog');
-	return rss({
-		title: SITE_TITLE,
-		description: SITE_DESCRIPTION,
-		site: context.site,
-		items: posts.map((post) => ({
-			...post.data,
-			link: `/blog/${post.id}/`,
-		})),
-	});
+    const articles = await getCollection('articles')
+    return rss({
+        title: 'ludvigsandberg',
+        description: 'reverse engineering, low level coding',
+        site: context.site,
+        items: articles.map((article) => ({
+            ...article.data,
+            link: `/article/${article.id}/`,
+        })),
+    })
 }
