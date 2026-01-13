@@ -34,28 +34,31 @@ const articles = (await getCollection('articles')).sort(
             rel="stylesheet"
         />
     </head>
-    <body style="visibility: hidden;" class="z-1 h-screen w-screen overflow-hidden">
+    <body
+        style="visibility: hidden;"
+        class="z-1 h-screen w-screen overflow-x-hidden lg:overflow-hidden"
+    >
         <!-- background image -->
         <div
-            class="absolute h-full w-full bg-[url('/bg.jpg')] bg-cover bg-center object-cover brightness-90"
+            class="fixed top-0 left-0 h-screen w-screen bg-[url('/bg.jpg')] bg-cover bg-center object-cover brightness-90"
         >
         </div>
         <!-- content -->
-        <div class="z-10 flex h-full w-full flex-row gap-0.75 p-7">
+        <div class="z-10 flex h-full w-full flex-col gap-0.75 p-3 lg:flex-row lg:p-7">
             <!-- left side bar -->
             <div class="flex flex-3 flex-col gap-0.75">
                 <div class="flex justify-center rounded-sm bg-white/12 p-6 backdrop-blur-sm">
                     <p class="text-sm">ludvigsandberg</p>
                 </div>
                 <div class="flex flex-1 flex-col rounded-sm bg-white/12 backdrop-blur-sm">
-                    <div class="p-10">
+                    <div class="flex justify-center p-6 lg:p-10">
                         <div
-                            class="aspect-square w-full rounded-full bg-[url('/me.jpg')] bg-cover bg-center"
+                            class="aspect-square w-full max-w-32 rounded-full bg-[url('/me.jpg')] bg-cover bg-center lg:max-w-full"
                         >
                         </div>
                     </div>
-                    <div class="flex-1 px-6">
-                        <p class="text-xs text-zinc-400/90">
+                    <div class="flex-1 px-6 pb-6">
+                        <p class="text-center text-xs text-zinc-400/90 lg:text-left">
                             I like reverse engineering and low level coding
                         </p>
                     </div>
@@ -90,29 +93,8 @@ const articles = (await getCollection('articles')).sort(
                     </div>
                 </div>
             </div>
-            <!-- main content -->
-            <div class="flex-12 rounded-sm bg-white/12 backdrop-blur-sm">
-                <div class="flex h-full w-full justify-center overflow-y-scroll px-16">
-                    <div class="h-full w-[80ch]">
-                        <div class="pt-16" id="test">
-                            <h1 class="mb-2 text-3xl font-medium">
-                                {article.data.title}
-                            </h1>
-                            <p class="mb-7 text-xs text-zinc-400/90">
-                                {article.data.date.toISOString().split('T')[0]}
-                            </p>
-                            <p class="text-sm leading-relaxed">
-                                <Content />
-                            </p>
-
-                            <!-- spacer -->
-                            <div class="h-16"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- right side bar -->
-            <div class="flex flex-3 flex-col gap-0.75">
+            <!-- article links -->
+            <div class="order-1 flex flex-3 flex-col gap-0.75 lg:order-2">
                 <div class="flex-1 rounded-sm bg-white/12 py-4.5 text-sm backdrop-blur-sm">
                     {
                         articles.map((article) => (
@@ -127,8 +109,31 @@ const articles = (await getCollection('articles')).sort(
                         ))
                     }
                 </div>
-                <div class="flex justify-center rounded-sm bg-white/12 p-6 backdrop-blur-sm">
+                <div
+                    class="flex hidden justify-center rounded-sm bg-white/12 p-6 backdrop-blur-sm lg:block"
+                >
                     <p class="text-xs text-zinc-400/90">© 2026</p>
+                </div>
+            </div>
+            <!-- main content -->
+            <div class="order-2 flex-12 rounded-sm bg-white/12 backdrop-blur-sm lg:order-1">
+                <div class="flex h-full w-full justify-center overflow-y-scroll px-6">
+                    <div class="h-full w-full lg:w-[80ch]">
+                        <div class="pt-6 lg:pt-16" id="test">
+                            <h1 class="mb-2 text-3xl font-medium">
+                                {article.data.title}
+                            </h1>
+                            <p class="mb-7 text-xs text-zinc-400/90">
+                                {article.data.date.toISOString().split('T')[0]}
+                            </p>
+                            <p class="text-sm leading-relaxed">
+                                <Content />
+                            </p>
+
+                            <!-- spacer -->
+                            <div class="h-6 lg:h-16"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
